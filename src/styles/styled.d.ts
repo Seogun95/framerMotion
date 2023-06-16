@@ -53,10 +53,18 @@ declare module 'styled-components' {
       iconStroke: string;
     };
     media: {
-      mobile: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
-      tablet: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
-      laptop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
-      desktop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+      max: {
+        mobile: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        tablet: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        laptop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        desktop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+      };
+      min: {
+        mobile: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        tablet: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        laptop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        desktop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+      };
     };
   }
 }
