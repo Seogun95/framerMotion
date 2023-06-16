@@ -3,19 +3,22 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 
 html, body {
-overflow: overlay;
 width: 100%;
+overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
-  background: ${props => props.theme.bgColor};
   color: ${props => props.theme.color};
+  background: ${({ theme }) => theme.bgGradient};
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
   font-weight: 500;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    height: 100%;
 }
 
 code {
@@ -177,7 +180,7 @@ ${({ theme }) => theme.media.tablet`
 
 
 /* Reset */
-html, body, div, span, applet, object, iframe,
+html, div, span, applet, object, iframe,
 p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -225,6 +228,7 @@ table {
 
 html {
   font-size: 16px;
+  background-color: ${({ theme }) => theme.bgColor};
 }
 
 `;

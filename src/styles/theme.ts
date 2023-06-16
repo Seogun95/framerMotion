@@ -100,6 +100,7 @@ export const Theme: DefaultTheme = {
   bgColorDeep: '#f1f1f1',
   bgColor: 'white',
   bgColor2: '#1e1e1e',
+  bgGradient: 'linear-gradient(to left,#5FC3E4,#E55D87)',
   color: '#191A23',
   color2: '#E2E2E2',
   transparentColor: 'rgba(25, 26, 35, 0.65)',
@@ -115,6 +116,8 @@ export const Theme: DefaultTheme = {
   scrollbar: {
     bg: 'rgba(181,181,193,.8)',
     hover: 'rgba(145, 145, 158, 1)',
+    iconBg: 'white',
+    iconStroke: '#1479FF',
   },
 };
 
@@ -131,6 +134,7 @@ export const DarkTheme: DefaultTheme = {
   bgColorDeep: '#2d2d2d',
   bgColor: '#1e1e1e',
   bgColor2: '#F8FAFB',
+  bgGradient: 'linear-gradient(to left,rgb(0 86 120), rgb(148 28 68))',
   color: '#E2E2E2',
   color2: '#191A23',
   transparentColor: '#f5f6f7a6',
@@ -146,5 +150,7 @@ export const DarkTheme: DefaultTheme = {
   scrollbar: {
     bg: 'rgba(86,88,105,1)',
     hover: 'rgba(172,172,190,1)',
+    iconBg: '#184099',
+    iconStroke: 'white',
   },
 };

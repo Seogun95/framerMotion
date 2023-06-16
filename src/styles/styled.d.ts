@@ -32,6 +32,7 @@ declare module 'styled-components' {
     bgColorDeep: string;
     bgColor: string;
     bgColor2: string;
+    bgGradient: string;
     color: string;
     color2: string;
     transparentColor: string;
@@ -48,6 +49,8 @@ declare module 'styled-components' {
     scrollbar: {
       bg: string;
       hover: string;
+      iconBg: string;
+      iconStroke: string;
     };
     media: {
       mobile: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
