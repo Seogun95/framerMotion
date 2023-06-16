@@ -42,9 +42,10 @@ const ScrollToTopContainer = styled.button<{ visible: boolean }>`
   transform: ${({ visible }) =>
     visible ? 'translateY(0)' : 'translateY(2rem)'};
 
-  ${({ theme, visible }) => theme.media.mobile`
+  ${({ theme, visible }) => theme.media.max.mobile`
     margin: 0.4rem 0;
     bottom: 0;
+    right: 0.6rem;
     opacity: .8;
     transform: ${visible ? 'translateY(0)' : 'translateY(4rem)'};
     &:hover { opacity: 1 }
@@ -66,7 +67,7 @@ const ScrollToTopIcon = styled(ScrollUp)`
     fill: ${({ theme }) => theme.scrollbar.iconBg};
     stroke: ${({ theme }) => theme.scrollbar.iconStroke};
   }
-  ${({ theme }) => theme.media.mobile`
+  ${({ theme }) => theme.media.max.mobile`
     &:hover, &:active {
       filter: ${theme.shadow.drop};
     }

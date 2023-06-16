@@ -77,11 +77,11 @@ const BoxContainer = styled.div`
   width: 1200px;
   height: 100%;
 
-  ${({ theme }) => theme.media.tablet`
+  ${({ theme }) => theme.media.max.tablet`
     grid-template-columns: repeat(2,minmax(0,1fr));
   `}
 
-  ${({ theme }) => theme.media.mobile`
+  ${({ theme }) => theme.media.max.mobile`
     grid-template-columns: repeat(1,minmax(0,1fr));
   `}
 `;

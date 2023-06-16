@@ -144,32 +144,35 @@ code {
     monospace;
 }
 
-::-webkit-scrollbar {
-    height: 1rem;
-    width: .5rem;
-    background: transparent;
-}
 
-::-webkit-scrollbar:horizontal {
-    height: .5rem;
-    width: 1rem
-}
-
-::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: ${({ theme }) => theme.scrollbar.bg};
-  background-clip: padding-box;
-  border: 0 solid transparent;
-  border-radius: 10px;
-  &:hover {
-    background-color: ${({ theme }) => theme.scrollbar.hover};
+${({ theme }) => theme.media.min.tablet`
+  ::-webkit-scrollbar {
+      height: 1rem;
+      width: .5rem;
+      background: transparent;
   }
-}
 
-${({ theme }) => theme.media.tablet`
+  ::-webkit-scrollbar:horizontal {
+      height: .5rem;
+      width: 1rem
+  }
+
+  ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${theme.scrollbar.bg};
+    background-clip: padding-box;
+    border: 0 solid transparent;
+    border-radius: 10px;
+    &:hover {
+      background-color: ${theme.scrollbar.hover};
+    }
+}
+`}
+
+${({ theme }) => theme.media.max.tablet`
     .scrollbar-trigger ::-webkit-scrollbar-thumb {
         visibility:hidden;
       &:hover {

@@ -226,7 +226,7 @@ const Switch = styled.label`
     filter: ${({ theme }) => theme.shadow.drop} grayscale(0.3);
   }
 
-  ${({ theme }) => theme.media.mobile`
+  ${({ theme }) => theme.media.max.mobile`
     display: none;
   `}
 `;

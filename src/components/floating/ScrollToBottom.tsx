@@ -44,7 +44,7 @@ const ScrollToBottomContainer = styled.button<{ visible: boolean }>`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transform: ${({ visible }) =>
     visible ? 'translateY(0)' : 'translateY(2rem)'};
-  ${({ theme, visible }) => theme.media.mobile`
+  ${({ theme, visible }) => theme.media.max.mobile`
     margin: 0.4rem 0;
     bottom: 0;
     opacity: .8;
@@ -68,7 +68,7 @@ const ScrollToBottomIcon = styled(ScrollDown)`
     fill: ${({ theme }) => theme.scrollbar.iconBg};
     stroke: ${({ theme }) => theme.scrollbar.iconStroke};
   }
-  ${({ theme }) => theme.media.mobile`
+  ${({ theme }) => theme.media.max.mobile`
     &:hover, &:active {
       filter: ${theme.shadow.drop};
     }
