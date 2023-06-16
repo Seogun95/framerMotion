@@ -1,17 +1,20 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ScrollUp } from 'assets/svg';
+import { ScrollDown } from 'assets/svg';
 import styled from 'styled-components';
 import { throttle } from 'lodash';
 
-export const ScrollToTop = () => {
+export const ScrollToBottom = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScrollToTop = throttle(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleScrollToBottom = throttle(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }, 500);
 
   const handleScroll = useCallback(() => {
-    if (window.pageYOffset > 100) {
+    if (
+      window.pageYOffset <
+      document.documentElement.scrollHeight - window.innerHeight
+    ) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -24,24 +27,23 @@ export const ScrollToTop = () => {
   }, [handleScroll]);
 
   return (
-    <ScrollToTopContainer visible={isVisible} onClick={handleScrollToTop}>
-      <ScrollToTopIcon />
-    </ScrollToTopContainer>
+    <ScrollToBottomContainer visible={isVisible} onClick={handleScrollToBottom}>
+      <ScrollToBottomIcon />
+    </ScrollToBottomContainer>
   );
 };
 
-const ScrollToTopContainer = styled.button<{ visible: boolean }>`
+const ScrollToBottomContainer = styled.button<{ visible: boolean }>`
   position: fixed;
   z-index: 99999;
   margin: 0.8rem 0.5rem;
   padding: 0;
   bottom: 2.8rem;
-  right: 0.2rem;
+  right: 3rem;
   background-color: transparent;
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transform: ${({ visible }) =>
     visible ? 'translateY(0)' : 'translateY(2rem)'};
-
   ${({ theme, visible }) => theme.media.mobile`
     margin: 0.4rem 0;
     bottom: 0;
@@ -51,7 +53,7 @@ const ScrollToTopContainer = styled.button<{ visible: boolean }>`
   `}
 `;
 
-const ScrollToTopIcon = styled(ScrollUp)`
+const ScrollToBottomIcon = styled(ScrollDown)`
   width: 2.425rem;
   height: 2.425rem;
   transition: 0.2s ease;
