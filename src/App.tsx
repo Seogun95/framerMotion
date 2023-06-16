@@ -8,6 +8,8 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from 'atom';
 import { PreloadImages } from 'assets';
+import { RouterScrollTop } from 'shared';
+import Header from 'shared/Layout/Header';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <PreloadImages />
           <GlobalStyle />
+          <RouterScrollTop />
+          <Header />
           <Outlet />
         </ThemeProvider>
       </QueryClientProvider>
