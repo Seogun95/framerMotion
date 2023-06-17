@@ -1,16 +1,6 @@
 import { DefaultTheme, css } from 'styled-components';
 import { media } from './media';
 
-const blue = {
-  brandColor1: '#F9FBFF',
-  brandColor2: '#D0E4FF',
-  brandColor3: '#A9CEFF',
-  brandColor4: '#87BBFF',
-  brandColor5: '#5FA4FF',
-  brandColor6: '#1479FF',
-  brandColor7: '#005EDA',
-};
-
 const FlexCol = css`
   display: flex;
   flex-direction: column;
@@ -90,19 +80,28 @@ const theme = {
 export const Theme: DefaultTheme = {
   media,
   ...theme,
-  blue,
   pointColor: '#30B198',
   subColor: '#FFC857',
   accentColor: '#EF476F',
-  pointColorLight: '#44c5ac',
-  greenColor: '#33bd65',
   transparentBackground: '#f5f6f7a6',
   bgColorDeep: '#f1f1f1',
-  bgColor: 'white',
+  bgColor: '#ffffff',
   bgColor2: '#1e1e1e',
-  bgGradient: 'linear-gradient(to left,#5FC3E4,#E55D87)',
-  color: '#191A23',
-  color2: '#E2E2E2',
+  bgGradient: 'linear-gradient(to left,#c0efff,#ffa8c3)',
+  fontColor: '#191A23',
+  fontColor2: '#E2E2E2',
+  colors: {
+    brand: '#33a06f',
+    brandLight: '#155f3e',
+    blue: '#3468a3',
+    blueLight: '#255489',
+    yellow: '#e0ad15',
+    yellowLight: '#bc9112',
+    red: '#cd2d3f',
+    redLight: '#ab2131',
+    purple: '#823c83',
+    purpleLight: '#602960',
+  },
   transparentColor: 'rgba(25, 26, 35, 0.65)',
   transitionOption: 'ease-in-out 0.15s',
   shadow: {
@@ -116,7 +115,7 @@ export const Theme: DefaultTheme = {
   scrollbar: {
     bg: 'rgba(181,181,193,.8)',
     hover: 'rgba(145, 145, 158, 1)',
-    iconBg: 'white',
+    iconBg: '#ffffff',
     iconStroke: '#1479FF',
   },
 };
@@ -124,19 +123,28 @@ export const Theme: DefaultTheme = {
 export const DarkTheme: DefaultTheme = {
   media,
   ...theme,
-  blue,
   pointColor: '#30B198',
   subColor: '#FFC857',
   accentColor: '#EF476F',
-  pointColorLight: '#44c5ac',
-  greenColor: '#33bd65',
   transparentBackground: '#21232E',
   bgColorDeep: '#2d2d2d',
   bgColor: '#1e1e1e',
   bgColor2: '#F8FAFB',
   bgGradient: 'linear-gradient(to left,rgb(0 86 120), rgb(148 28 68))',
-  color: '#E2E2E2',
-  color2: '#191A23',
+  fontColor: '#E2E2E2',
+  fontColor2: '#191A23',
+  colors: {
+    brand: '#42d392',
+    brandLight: '#35eb9a',
+    blue: '#3b8eed',
+    blueLight: '#50a2ff',
+    yellow: '#ffc517',
+    yellowLight: '#ffff17',
+    red: '#ed3c50',
+    redLight: '#fd1d7c',
+    purple: '#de41e0',
+    purpleLight: '#f616f8',
+  },
   transparentColor: '#f5f6f7a6',
   transitionOption: 'ease-in-out 0.15s',
   shadow: {
@@ -151,6 +159,6 @@ export const DarkTheme: DefaultTheme = {
     bg: 'rgba(86,88,105,1)',
     hover: 'rgba(172,172,190,1)',
     iconBg: '#184099',
-    iconStroke: 'white',
+    iconStroke: '#ffffff',
   },
 };

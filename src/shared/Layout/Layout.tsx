@@ -2,17 +2,18 @@ import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
-import { DarkModeToggle, ScrollToBottom, ScrollToTop } from 'components';
+import { ProgressBar, ScrollToggle } from 'components';
+import { RouterScrollTop } from 'shared/RouterScrollTop';
 
 export function Layout() {
   return (
     <>
       <Suspense fallback={null}>
+        <ProgressBar />
+        <RouterScrollTop />
         <Wrapper>
           <Outlet />
-          <ScrollToTop />
-          <ScrollToBottom />
-          <DarkModeToggle />
+          <ScrollToggle />
         </Wrapper>
       </Suspense>
     </>
@@ -20,10 +21,10 @@ export function Layout() {
 }
 
 const Wrapper = styled.main`
-  display: inline-block;
-  width: 100%;
+  ${({ theme }) => theme.FlexRow};
+  ${({ theme }) => theme.FlexCenter};
+  min-height: 100vh;
   height: 100%;
-  min-height: calc(100vh);
-  padding: 4.125rem 0.5rem 2rem;
-  overflow: hidden;
+  width: 100vw;
+  padding: 4rem 1rem 1rem;
 `;

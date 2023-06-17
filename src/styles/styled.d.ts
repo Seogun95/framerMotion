@@ -15,29 +15,30 @@ declare module 'styled-components' {
     NoPaddingMargin;
     TextEllipsis;
     TextEllipsisMultiline;
-    blue: {
-      brandColor1: string;
-      brandColor2: string;
-      brandColor3: string;
-      brandColor4: string;
-      brandColor5: string;
-      brandColor6: string;
-      brandColor7: string;
-    };
     pointColor: string;
     subColor: string;
     accentColor: string;
-    greenColor: string;
     transparentBackground: string;
     bgColorDeep: string;
     bgColor: string;
     bgColor2: string;
     bgGradient: string;
-    color: string;
-    color2: string;
+    fontColor: string;
+    fontColor2: string;
+    colors: {
+      brand: string;
+      brandLight: string;
+      blue: string;
+      blueLight: string;
+      yellow: string;
+      yellowLight: string;
+      red: string;
+      redLight: string;
+      purple: string;
+      purpleLight: string;
+    };
     transparentColor: string;
     transitionOption: string;
-    pointColorLight: string;
     shadow: {
       box: string;
       box_Hover: string;

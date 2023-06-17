@@ -9,7 +9,7 @@ overflow-x: hidden;
 
 body {
   margin: 0;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.fontColor};
   background: ${({ theme }) => theme.bgGradient};
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
   font-weight: 500;
@@ -22,7 +22,7 @@ body {
 }
 
 code {
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.fontColor};
     border: .0625rem solid #e96900;
     padding: .0625rem .3125rem;
     margin: 0 .3125rem 0 .1875rem;
@@ -42,7 +42,7 @@ button {
   text-align: center;
   transition: .2s ease;
   background-color: ${({ theme }) => theme.bgColorDeep};
-  color: ${({ theme }) => theme.color};
+  color: ${({ theme }) => theme.fontColor};
   border: none;
   padding: .5rem;
   border-radius: .625rem;
@@ -61,7 +61,7 @@ input {
   border: none;
   border-radius: .625rem;
   padding: .5rem 1rem;
-  color: ${({ theme }) => theme.color};
+  color: ${({ theme }) => theme.fontColor};
   overflow: hidden;
 }
 
@@ -73,10 +73,10 @@ input:autofill,
 input:autofill:hover,
 input:autofill:focus,
 input:autofill:active  {
-	-webkit-text-fill-color: ${({ theme }) => theme.color};
+	-webkit-text-fill-color: ${({ theme }) => theme.fontColor};
   -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.bgColorDeep} inset;
   box-shadow: 0 0 0px 1000px ${({ theme }) => theme.bgColorDeep} inset;
-  caret-color: ${({ theme }) => theme.color} !important;
+  caret-color: ${({ theme }) => theme.fontColor} !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
