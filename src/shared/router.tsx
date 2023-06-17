@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, createElement } from 'react';
 
 import App from 'App';
 
-import { Home } from 'pages';
+import { Home, Overlay, SharedLayout, Slider } from 'pages';
 import { Layout, NotFound } from 'shared';
+import { Modal } from 'pages/framer/Modal';
+import { ROUTE_MAP } from 'components/constants/routes';
 
 const router = createBrowserRouter(
   [
@@ -24,12 +26,18 @@ const router = createBrowserRouter(
               index: true,
               element: <Home />,
             },
+            ...Object.entries(ROUTE_MAP).map(([PATH, DATA]) => {
+              return {
+                path: PATH,
+                element: createElement(DATA.COMPONENT),
+              };
+            }),
           ],
         },
       ],
     },
   ],
-  { basename: process.env.PUBLIC_URL }
+  { basename: process.env.PUBLIC_URL },
 );
 
 export default router;
