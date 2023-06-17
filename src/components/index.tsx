@@ -1,3 +1,3 @@
 export * from './floating/DarkModeToggle';
-export * from './floating/ScrollToTop';
-export * from './floating/ScrollToBottom';
+export * from './floating/ScrollToggle';
+export * from './floating/ProgressBar';
