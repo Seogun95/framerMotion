@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import styled from 'styled-components';
+import { useCallback, useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from 'atom';
 import { HiSun } from 'react-icons/hi';
@@ -22,8 +22,24 @@ export const DarkModeToggle = () => {
     }
   }, [isClickAllowed, setIsDark]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        (event.metaKey || event.ctrlKey) &&
+        (event.key === 'k' || event.key === 'K')
+      ) {
+        toggleDarkMode();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleDarkMode]);
+
   return (
-    <>
+    <Wrapper onClick={toggleDarkMode}>
       <Input
         id="darkModeToggle"
         type="checkbox"
@@ -44,7 +60,8 @@ export const DarkModeToggle = () => {
           {isDark ? <StyledStar /> : <StyledSun />}
         </Background>
       </Switch>
-    </>
+      <Shortcut isDark={isDark}>⌘ K</Shortcut>
+    </Wrapper>
   );
 };
 
@@ -208,27 +225,42 @@ const StyledSun = styled.span`
   opacity: 1;
 `;
 
+const Shortcut = styled.span<IisDarkProps>`
+  display: flex;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+  background-color: ${({ theme }) => theme.bgColor2};
+  color: ${({ theme }) => theme.fontColor2};
+  font-size: 0.7rem;
+  transition: 0.2s linear;
+  margin-left: -5px;
+  position: relative;
+  height: fit-content;
+
+  ::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent ${({ theme }) => theme.bgColor2} transparent
+      transparent;
+    transition: 0.2s linear;
+  }
+`;
+
 const Switch = styled.label`
+  display: block;
+  position: relative;
+  z-index: 1;
   cursor: pointer;
-  position: fixed;
-  z-index: 99999;
-  margin: 0.8rem 0.5rem;
+  margin-left: 8px;
   width: 5.625rem;
   height: 2.5rem;
-  bottom: 0rem;
-  right: 0rem;
   filter: ${({ theme }) => theme.shadow.drop};
-  transition: 0.2s ease;
-  &:hover {
-    filter: ${({ theme }) => theme.shadow.drop_Hover};
-  }
-  &:active {
-    filter: ${({ theme }) => theme.shadow.drop} grayscale(0.3);
-  }
-
-  ${({ theme }) => theme.media.max.mobile`
-    display: none;
-  `}
+  transform: scale(0.7);
 `;
 
 const Input = styled.input`
@@ -291,4 +323,25 @@ const Input = styled.input`
       }
     }
   }
+`;
+
+const Wrapper = styled.div`
+  ${({ theme }) => theme.FlexRow};
+  ${({ theme }) => theme.FlexCenter};
+  opacity: 0.8;
+  transition: 0.2s ease;
+  &:hover {
+    opacity: 1;
+  }
+  &:hover ${Shortcut} {
+    background: ${({ theme }) => theme.colors.brand};
+    color: ${({ theme }) => theme.fontColor2};
+    &:after {
+      border-color: transparent ${({ theme }) => theme.colors.brand} transparent
+        transparent;
+    }
+  }
+  ${({ theme }) => theme.media.max.mobile`
+    display: none;
+  `}
 `;
