@@ -5,12 +5,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import _ from 'lodash';
+import { ROUTER_LIST } from 'components/constants/routes';
+import { RouterNav } from './RouterNav';
+import { DarkModeToggle } from 'components';
 
 interface IHeader {
   isScrolled: boolean;
   isScrollTop: boolean;
 }
-export default function Header() {
+export function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const isDark = useRecoilValue(isDarkAtom);
@@ -82,7 +85,14 @@ export default function Header() {
             className={isHovered ? 'active' : ''}
           >
             <LogoImg src={logo} isDark={isDark} />
+            <LogoText>Framer</LogoText>
           </HeaderLink>
+          {ROUTER_LIST.map(([PATH, DATA]) => {
+            return PATH === location.pathname
+              ? DATA.NAV && <RouterNav key={PATH} />
+              : null;
+          })}
+          <DarkModeToggle />
         </HeaderLogoContainer>
       </HeaderContainer>
     </HeaderStyles>
@@ -91,9 +101,7 @@ export default function Header() {
 
 const HeaderStyles = styled.header<{ scrollTop: string }>`
   width: 100%;
-  height: 3.125rem;
-  display: flex;
-  justify-content: center;
+  height: 3.75rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -112,15 +120,28 @@ const HeaderStyles = styled.header<{ scrollTop: string }>`
     border: none;
   }
 `;
+
 const HeaderContainer = styled.div`
-  ${props => props.theme.FlexRow};
-  ${props => props.theme.FlexCenter};
   width: 100%;
-  padding: 0 1rem;
+  height: 100%;
+  padding: 0 0.75rem 0 1.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.bgColorDeep};
+  ${({ theme }) => theme.media.min.tablet`
+    padding: 0 .75rem 0 2rem;
+  `}
+
+  ${({ theme }) => theme.media.min.laptop`
+    padding: 0 2rem
+  `}
 `;
+
 const HeaderLogoContainer = styled.div`
-  flex: 0 0 auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 86rem;
+  height: 100%;
   div {
     ${props => props.theme.CursorActive};
   }
@@ -128,30 +149,31 @@ const HeaderLogoContainer = styled.div`
 
 const LogoImg = styled.img<{ isDark: boolean }>`
   content: url(${logo});
-  width: 2.5rem;
+  width: 2rem;
   height: 100%;
   padding: 0.2rem;
   filter: ${({ isDark }) => isDark && 'invert(1)'};
 `;
 
+const LogoText = styled.span`
+  padding-left: 0.5rem;
+  font-weight: 500;
+  transition: 0.3s ease opacity;
+`;
 const HeaderLink = styled.a`
-  font-weight: 900;
-  font-size: 1.2rem;
-  transition: 0.1s ease-in;
-  &:hover {
-    color: ${props => props.theme.accentColor};
-  }
-  &:before {
-    content: '';
-    ${({ theme }) => theme.AbsoluteTL};
-    ${({ theme }) => theme.wh100};
-  }
+  display: flex;
+  align-items: center;
+  padding-top: 1px;
+  height: 3.125rem;
   &.active {
     &:hover ${LogoImg} {
       content: url(${logoHover});
     }
     &:active ${LogoImg} {
       content: url(${logoActive});
+    }
+    &:hover ${LogoText} {
+      opacity: 0.6;
     }
   }
 `;
