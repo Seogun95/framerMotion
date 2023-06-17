@@ -31,23 +31,14 @@ export const ScrollToTop = () => {
 };
 
 const ScrollToTopContainer = styled.button<{ visible: boolean }>`
-  position: fixed;
-  z-index: 99999;
-  margin: 0.8rem 0.5rem;
   padding: 0;
-  bottom: 2.8rem;
-  right: 0.2rem;
   background-color: transparent;
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transform: ${({ visible }) =>
     visible ? 'translateY(0)' : 'translateY(2rem)'};
 
   ${({ theme, visible }) => theme.media.max.mobile`
-    margin: 0.4rem 0;
-    bottom: 0;
-    right: 0.6rem;
-    opacity: .8;
-    transform: ${visible ? 'translateY(0)' : 'translateY(4rem)'};
+    opacity: ${visible ? 1 : 0};
     &:hover { opacity: 1 }
   `}
 `;

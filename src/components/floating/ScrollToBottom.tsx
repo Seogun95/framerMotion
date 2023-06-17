@@ -2,9 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { ScrollDown } from 'assets/svg';
 import styled from 'styled-components';
 import { throttle } from 'lodash';
+import { useLocation } from 'react-router-dom';
 
 export const ScrollToBottom = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
 
   const handleScrollToBottom = throttle(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -22,9 +24,16 @@ export const ScrollToBottom = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
   }, [handleScroll]);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll, location]);
 
   return (
     <ScrollToBottomContainer visible={isVisible} onClick={handleScrollToBottom}>
@@ -34,21 +43,14 @@ export const ScrollToBottom = () => {
 };
 
 const ScrollToBottomContainer = styled.button<{ visible: boolean }>`
-  position: fixed;
-  z-index: 99999;
-  margin: 0.8rem 0.5rem;
   padding: 0;
-  bottom: 2.8rem;
-  right: 3rem;
   background-color: transparent;
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transform: ${({ visible }) =>
     visible ? 'translateY(0)' : 'translateY(2rem)'};
   ${({ theme, visible }) => theme.media.max.mobile`
-    margin: 0.4rem 0;
-    bottom: 0;
-    opacity: .8;
-    transform: ${visible ? 'translateY(0)' : 'translateY(4rem)'};
+    opacity: ${visible ? 1 : 0};
+    transform: ${visible ? 'translateY(0)' : 'translateY(2rem)'};
     &:hover { opacity: 1 }
   `}
 `;
