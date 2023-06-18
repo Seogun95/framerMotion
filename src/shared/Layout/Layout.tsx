@@ -26,5 +26,5 @@ const Wrapper = styled.main`
   min-height: 100vh;
   height: 100%;
   width: 100vw;
-  padding: 4rem 1rem 1rem;
+  padding: 5rem 1rem 1rem;
 `;

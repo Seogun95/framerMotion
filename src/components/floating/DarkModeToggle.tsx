@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from 'atom';
 import { HiSun } from 'react-icons/hi';
@@ -8,7 +8,10 @@ import lightMode from 'assets/img/lightMode.png';
 import darkMode from 'assets/img/darkMode.png';
 import _ from 'lodash';
 
-export const DarkModeToggle = () => {
+interface IDarkModeProps {
+  side: boolean;
+}
+export const DarkModeToggle = ({ side }: IDarkModeProps) => {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
   const [isClickAllowed, setIsClickAllowed] = useState(true);
 
@@ -18,7 +21,7 @@ export const DarkModeToggle = () => {
       audio.play();
       setIsDark(prev => !prev);
       setIsClickAllowed(false);
-      _.delay(() => setIsClickAllowed(true), 750);
+      _.delay(() => setIsClickAllowed(true), 800);
     }
   }, [isClickAllowed, setIsDark]);
 
@@ -38,8 +41,10 @@ export const DarkModeToggle = () => {
     };
   }, [toggleDarkMode]);
 
+  const checkMacOs = navigator.userAgent.indexOf('Mac OS X') !== -1;
+
   return (
-    <Wrapper onClick={toggleDarkMode}>
+    <Wrapper onClick={toggleDarkMode} side={side}>
       <Input
         id="darkModeToggle"
         type="checkbox"
@@ -60,7 +65,7 @@ export const DarkModeToggle = () => {
           {isDark ? <StyledStar /> : <StyledSun />}
         </Background>
       </Switch>
-      <Shortcut isDark={isDark}>⌘ K</Shortcut>
+      <Shortcut isDark={isDark}>{checkMacOs ? '⌘' : 'ctrl'} K</Shortcut>
     </Wrapper>
   );
 };
@@ -113,37 +118,37 @@ const Moon = styled.ul`
   opacity: 0;
   li {
     list-style: none;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     background-color: #949ead;
     position: absolute;
   }
 
   li:first-child {
-    width: 7px;
-    height: 7px;
-    left: 0px;
-    top: 0px;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    left: 0;
+    top: 0;
     background: linear-gradient(131deg, #becce1 38%, #626a77 100%);
   }
 
   li:nth-child(2) {
-    width: 5px;
-    height: 5px;
+    width: 0.3125rem;
+    height: 0.3125rem;
     right: 0;
-    bottom: 4px;
+    bottom: 0.25rem;
   }
 
   li:nth-child(3) {
-    width: 3px;
-    height: 3px;
-    right: 10px;
-    bottom: 0px;
+    width: 0.1875rem;
+    height: 0.1875rem;
+    right: 0.625rem;
+    bottom: 0rem;
   }
 
   li:nth-child(4) {
-    width: 2px;
-    height: 2px;
-    left: 9px;
+    width: 0.125rem;
+    height: 0.125rem;
+    left: 0.5625rem;
     top: 0;
   }
 `;
@@ -184,7 +189,7 @@ const Background = styled.div.attrs({
       1.8125rem -1.75rem 0rem rgba(255, 255, 255, 1),
       3.0625rem -1.125rem 0rem rgba(255, 255, 255, 1),
       4.0625rem -1.4375rem 0rem rgba(255, 255, 255, 1);
-    filter: drop-shadow(0px 0.2rem 0.3rem rgba(155, 160, 179, 0.6));
+    filter: drop-shadow(0 0.2rem 0.3rem rgba(155, 160, 179, 0.6));
   }
 `;
 
@@ -233,7 +238,7 @@ const Shortcut = styled.span<IisDarkProps>`
   color: ${({ theme }) => theme.fontColor2};
   font-size: 0.7rem;
   transition: 0.2s linear;
-  margin-left: -5px;
+  margin-left: -0.3125rem;
   position: relative;
   height: fit-content;
 
@@ -241,14 +246,18 @@ const Shortcut = styled.span<IisDarkProps>`
     content: '';
     position: absolute;
     top: 50%;
-    left: -10px;
-    margin-top: -5px;
-    border-width: 5px;
+    left: -0.625rem;
+    margin-top: -0.3125rem;
+    border-width: 0.3125rem;
     border-style: solid;
     border-color: transparent ${({ theme }) => theme.bgColor2} transparent
       transparent;
     transition: 0.2s linear;
   }
+
+  ${({ theme }) => theme.media.max.tablet`
+      display: none;
+  `}
 `;
 
 const Switch = styled.label`
@@ -256,7 +265,7 @@ const Switch = styled.label`
   position: relative;
   z-index: 1;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 0.5rem;
   width: 5.625rem;
   height: 2.5rem;
   filter: ${({ theme }) => theme.shadow.drop};
@@ -325,9 +334,10 @@ const Input = styled.input`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ side: boolean }>`
   ${({ theme }) => theme.FlexRow};
   ${({ theme }) => theme.FlexCenter};
+  ${({ theme }) => theme.CursorActive};
   opacity: 0.8;
   transition: 0.2s ease;
   &:hover {
@@ -341,7 +351,12 @@ const Wrapper = styled.div`
         transparent;
     }
   }
-  ${({ theme }) => theme.media.max.mobile`
-    display: none;
+
+  ${({ theme, side }) => theme.media.max.desktop`
+    display: ${side ? 'flex' : 'none'} ;
+
+    ${Shortcut} {
+      display: none;
+    }
   `}
 `;

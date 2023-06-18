@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
 /* ======= 다크모드 Atom ======= */
@@ -13,3 +13,8 @@ export const isDarkAtom = atom<boolean>({
   effects_UNSTABLE: [darkPersist],
 });
 /* ======= END ======= */
+
+export const isSidebar = atom<boolean>({
+  key: 'sidebar',
+  default: false,
+});
