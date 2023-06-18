@@ -74,8 +74,9 @@ input:autofill:hover,
 input:autofill:focus,
 input:autofill:active  {
 	-webkit-text-fill-color: ${({ theme }) => theme.fontColor};
-  -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.bgColorDeep} inset;
-  box-shadow: 0 0 0px 1000px ${({ theme }) => theme.bgColorDeep} inset;
+  -webkit-box-shadow: 0 0 0rem 62.5rem ${({ theme }) =>
+    theme.bgColorDeep} inset;
+  box-shadow: 0 0 0rem 62.5rem ${({ theme }) => theme.bgColorDeep} inset;
   caret-color: ${({ theme }) => theme.fontColor} !important;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -145,27 +146,31 @@ code {
 }
 
 
+
+
+
+
 ${({ theme }) => theme.media.min.tablet`
-  ::-webkit-scrollbar {
+  html::-webkit-scrollbar {
       height: 1rem;
       width: .5rem;
       background: transparent;
   }
 
-  ::-webkit-scrollbar:horizontal {
+  html::-webkit-scrollbar:horizontal {
       height: .5rem;
       width: 1rem
   }
 
-  ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+  html::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
     background-color: transparent;
   }
 
-  ::-webkit-scrollbar-thumb {
+  html::-webkit-scrollbar-thumb {
     background-color: ${theme.scrollbar.bg};
     background-clip: padding-box;
     border: 0 solid transparent;
-    border-radius: 10px;
+    border-radius: .625rem;
     &:hover {
       background-color: ${theme.scrollbar.hover};
     }
@@ -173,6 +178,9 @@ ${({ theme }) => theme.media.min.tablet`
 `}
 
 ${({ theme }) => theme.media.max.tablet`
+    html::-webkit-scrollbar {
+      display: none;
+    }
     .scrollbar-trigger ::-webkit-scrollbar-thumb {
         visibility:hidden;
       &:hover {
@@ -211,7 +219,7 @@ footer, header, hgroup, menu, nav, section {
 ol, ul {
   list-style: decimal;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 1.25rem;
  li {
   margin: .2rem 0
  }

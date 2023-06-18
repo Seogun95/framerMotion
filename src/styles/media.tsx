@@ -5,13 +5,15 @@ type MediaQueryProps = {
   tablet: number;
   laptop: number;
   desktop: number;
+  fullDesktop: number;
 };
 
 const sizes: MediaQueryProps = {
   mobile: 576,
   tablet: 768,
   laptop: 1024,
-  desktop: 2560,
+  desktop: 1280,
+  fullDesktop: 2560,
 };
 
 type BackQuoteArgs = string[];
