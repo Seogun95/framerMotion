@@ -59,12 +59,20 @@ declare module 'styled-components' {
         tablet: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
         laptop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
         desktop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        fullDesktop: (
+          literals: TemplateStringsArray,
+          ...args: any[]
+        ) => CSSProp;
       };
       min: {
         mobile: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
         tablet: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
         laptop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
         desktop: (literals: TemplateStringsArray, ...args: any[]) => CSSProp;
+        fullDesktop: (
+          literals: TemplateStringsArray,
+          ...args: any[]
+        ) => CSSProp;
       };
     };
   }
