@@ -51,7 +51,7 @@ export const FramerMotionValue = () => {
 
   return (
     <>
-      <button onClick={() => x.set(100)}>이동</button>
+      {/* <button onClick={() => x.set(100)}>이동</button> */}
       <Box
         ref={constraintsRef}
         drag="x"
@@ -75,4 +75,5 @@ const Box = styled(motion.div)`
   border-radius: 0.9375rem;
   box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
     0 0.625rem 1.25rem rgba(0, 0, 0, 0.06);
+  cursor: pointer;
 `;
