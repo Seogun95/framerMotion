@@ -4,3 +4,4 @@ export * from './framer/Overlay';
 export * from './framer/Slider';
 export * from './framer/SharedLayout';
 export * from './framer/Modal';
+export * from './framer/svgAnimate/SvgAnimation';

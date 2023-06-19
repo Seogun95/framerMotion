@@ -10,7 +10,7 @@ export function HamburgerNav() {
   return (
     <Nav>
       {ROUTER_LIST.map(([PATH, DATA]) => {
-        if (DATA.NAV) {
+        if (DATA.ROUTE) {
           const isActive = PATH === pathname;
           return (
             <NavLink

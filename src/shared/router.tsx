@@ -3,9 +3,8 @@ import { Suspense, createElement } from 'react';
 
 import App from 'App';
 
-import { Home, Overlay, SharedLayout, Slider } from 'pages';
+import { Home } from 'pages';
 import { Layout, NotFound } from 'shared';
-import { Modal } from 'pages/framer/Modal';
 import { ROUTE_MAP } from 'components/constants/routes';
 
 const router = createBrowserRouter(

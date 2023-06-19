@@ -32,7 +32,7 @@ export function RouterNav() {
     <Wrapper>
       <Nav>
         {ROUTER_LIST.map(([PATH, DATA]) => {
-          if (DATA.NAV) {
+          if (DATA.ROUTE) {
             const isActive = PATH === pathname;
             return (
               <NavLink to={PATH} key={DATA.TITLE} active={`${isActive}`}>
